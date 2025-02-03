@@ -1,37 +1,28 @@
 'use strict';
 
-const resultAfterDel = getDelFromUser("Введіть строку:", ['Введіть символи, які потрібно видалити:']);
-alert(`Після видалення елементів ви отримали: ${resultAfterDel}!`);
-function getDelFromUser(message, items) {
+const dataFromUser = prompt('Введіть строку:');
+const dataForDel = prompt('Введіть символи, які потрібно видалити:');
 
+if (!dataFromUser?.trim() || !dataForDel?.trim()) {
+    alert('Помилка, спробуйте ще раз.');
+}
+
+const resultAfterDel = getDelFromUser(dataFromUser, dataForDel);
+function getDelFromUser(strToArr, arr) {
     let result;
-
-    let messageList;
-    do {
-        messageList = prompt(message);
-    }
-    while (!messageList?.trim());
-    alert(`Ви ввели: ${messageList}`);
-    messageList = messageList.split('');
-
-    let delFromMessageList;
-    do {
-        delFromMessageList = prompt(items);
-
-    }
-    while (!delFromMessageList?.trim());
-    alert(`Потрібно видалити: ${delFromMessageList}`);
-    delFromMessageList = delFromMessageList.split('');
-
-    for (let i = 0; i < messageList.length; i++) {
-        if (delFromMessageList.includes(messageList[i])) {
-            messageList.splice(i, 1);
+    strToArr = dataFromUser.split('');
+    arr = dataForDel.split('');
+    for (let i = 0; i < strToArr.length; i++) {
+        if (arr.includes(strToArr[i])) {
+            strToArr.splice(i, 1);
             i--;
         }
     }
-    result = messageList.join('');
+    result = strToArr.join('');
     return result;
 }
+alert(`Після видалення елементів ви отримали: ${resultAfterDel}!`);
+
 
 // -------------------------------------------------------------------------------------------------------------------
 
