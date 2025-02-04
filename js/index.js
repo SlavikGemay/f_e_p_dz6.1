@@ -1,17 +1,26 @@
 'use strict';
 
-const dataFromUser = prompt('Введіть строку:');
-const dataForDel = prompt('Введіть символи, які потрібно видалити:');
 
-if (!dataFromUser?.trim() || !dataForDel?.trim()) {
-    alert('Помилка, спробуйте ще раз.');
+let dataFromUserStr;
+do {
+    dataFromUserStr = prompt('Введіть строку:');
 }
+while (!dataFromUserStr?.trim());
+const dataFromUser = dataFromUserStr;
+
+
+let dataForDelArr;
+do {
+    dataForDelArr = prompt('Введіть символи, які потрібно видалити:');
+}
+while (!dataForDelArr?.trim());
+const dataForDel = dataForDelArr.split('');
+
 
 const resultAfterDel = getDelFromUser(dataFromUser, dataForDel);
 function getDelFromUser(strToArr, arr) {
     let result;
     strToArr = dataFromUser.split('');
-    arr = dataForDel.split('');
     for (let i = 0; i < strToArr.length; i++) {
         if (arr.includes(strToArr[i])) {
             strToArr.splice(i, 1);
@@ -22,7 +31,6 @@ function getDelFromUser(strToArr, arr) {
     return result;
 }
 alert(`Після видалення елементів ви отримали: ${resultAfterDel}!`);
-
 
 // -------------------------------------------------------------------------------------------------------------------
 
